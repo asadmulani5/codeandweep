@@ -1,0 +1,13 @@
+{
+  "name": "codeandweep-backend",
+  "version": "1.0.0",
+  "description": "API server for CodeAndWeep, an AI mock interview platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Asad Mulani",
+  "license": "ISC",
+  "type": "module"
+}
