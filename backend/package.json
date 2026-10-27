@@ -4,7 +4,8 @@
   "description": "API server for CodeAndWeep, an AI mock interview platform",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js"
   },
   "keywords": [],
   "author": "Asad Mulani",
