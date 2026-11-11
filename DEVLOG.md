@@ -17,3 +17,5 @@
 - Random result marker blocks fake output; try/except per test
 - Added GET /problems/:id (hides tests, shows 2 examples) and POST /submit
 - Tested: correct Two Sum = accepted 4/4; cheat = wrong_answer 2/4
+
+- Known issue: npm audit flags dompurify (critical) via monaco-editor; no patched Monaco release yet. Low risk (editor only shows user's own code). Revisit before deploy.
