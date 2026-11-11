@@ -12,3 +12,8 @@
 - Added POST /run endpoint with input validation (400 on bad input)
 - Tested: print(2+3) returns 5; infinite loop killed at 5s (137)
 - Learned: exit codes 0/1/125/137, command injection prevention, Promises
+
+- Built judge.js: harness runs user function against tests in one container
+- Random result marker blocks fake output; try/except per test
+- Added GET /problems/:id (hides tests, shows 2 examples) and POST /submit
+- Tested: correct Two Sum = accepted 4/4; cheat = wrong_answer 2/4
