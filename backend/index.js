@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { runPython } from "./runner.js";
 import { problems } from "./problems.js";
 import { judge } from "./judge.js";
@@ -6,6 +7,7 @@ import { judge } from "./judge.js";
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 
 app.get("/health", (req, res) => {
