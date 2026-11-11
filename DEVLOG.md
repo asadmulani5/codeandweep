@@ -19,3 +19,8 @@
 - Tested: correct Two Sum = accepted 4/4; cheat = wrong_answer 2/4
 
 - Known issue: npm audit flags dompurify (critical) via monaco-editor; no patched Monaco release yet. Low risk (editor only shows user's own code). Revisit before deploy.
+
+- Frontend: Next.js 16 page with Monaco editor, fetches problem and submits to backend
+- Enabled CORS for localhost:3000 only
+- Set page title to CodeAndWeep
+- MVP loop works end to end: write code in browser, judged in Docker, verdict shown
