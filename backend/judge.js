@@ -19,6 +19,10 @@ print("${marker}" + __json.dumps(__results))
 `;
 
   const run = await runPython(userCode + "\n" + harness);
+    if (run.exitCode === 125) {
+    console.error("Docker failed:", run.stderr);
+    return { status: "error", stderr: "Code execution is temporarily unavailable. Please try again shortly." };
+  }
 
   const line = run.stdout.split("\n").find((l) => l.startsWith(marker));
   if (!line) {
