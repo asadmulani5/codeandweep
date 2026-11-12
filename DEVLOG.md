@@ -24,3 +24,10 @@
 - Enabled CORS for localhost:3000 only
 - Set page title to CodeAndWeep
 - MVP loop works end to end: write code in browser, judged in Docker, verdict shown
+
+## Nov 12, 2026
+- Added Claude (Haiku 5.5) AI reviewer: verdict, complexity, strengths, issues, follow-up
+- API key stored in backend/.env (git-ignored), loaded via node --env-file
+- Graceful fallback: test results still return if AI review fails
+- Prompt-injection guard in system prompt
+- Frontend ReviewPanel shows interviewer feedback
