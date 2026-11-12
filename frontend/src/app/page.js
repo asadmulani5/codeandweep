@@ -61,6 +61,7 @@ export default function Home() {
 
         {error && <p className="mt-6 text-red-400">{error}</p>}
         {result && <ResultPanel result={result} />}
+        {result?.review && <ReviewPanel review={result.review} />}
       </section>
 
       <section className="flex w-3/5 flex-col">
@@ -80,7 +81,7 @@ export default function Home() {
             disabled={loading}
             className="rounded bg-emerald-600 px-5 py-2 font-medium hover:bg-emerald-500 disabled:opacity-50"
           >
-            {loading ? "Running..." : "Submit"}
+            {loading ? "Running tests and reviewing..." : "Submit"}
           </button>
         </div>
       </section>
@@ -109,6 +110,50 @@ function ResultPanel({ result }) {
       {result.stderr && (
         <pre className="mt-3 whitespace-pre-wrap text-sm text-red-300">{result.stderr}</pre>
       )}
+    </div>
+  );
+}
+
+function ReviewPanel({ review }) {
+  const positive = review.verdict?.includes("Hire") && !review.verdict.includes("No Hire");
+
+  return (
+    <div className="mt-6 rounded border border-zinc-800 p-4">
+      <p className="text-sm uppercase tracking-wide text-zinc-400">Interviewer feedback</p>
+      <p className={`mt-1 text-xl font-semibold ${positive ? "text-emerald-400" : "text-amber-400"}`}>
+        {review.verdict}
+      </p>
+      <p className="mt-2 text-zinc-300">{review.summary}</p>
+
+      <div className="mt-3 flex gap-6 text-sm text-zinc-400">
+        <span>Time: <span className="text-zinc-100">{review.timeComplexity}</span></span>
+        <span>Space: <span className="text-zinc-100">{review.spaceComplexity}</span></span>
+      </div>
+
+      <ReviewList title="Strengths" items={review.strengths} />
+      <ReviewList title="Issues" items={review.issues} />
+
+      {review.followUp && (
+        <div className="mt-4 rounded bg-zinc-900 p-3 text-sm">
+          <span className="font-medium">Follow-up question: </span>
+          {review.followUp}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ReviewList({ title, items }) {
+  if (!items?.length) return null;
+
+  return (
+    <div className="mt-4">
+      <h4 className="font-medium">{title}</h4>
+      <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-zinc-300">
+        {items.map((item, i) => (
+          <li key={i}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
