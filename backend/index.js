@@ -3,7 +3,7 @@ import cors from "cors";
 import { runPython } from "./runner.js";
 import { problems } from "./problems.js";
 import { judge } from "./judge.js";
-
+import { reviewCode } from "./reviewer.js";
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -39,7 +39,16 @@ app.post("/submit", async (req, res) => {
   if (typeof code !== "string" || code.length === 0 || code.length > 10000) {
     return res.status(400).json({ error: "code must be a string of 1-10000 characters" });
   }
-  res.json(await judge(problem, code));
+    const result = await judge(problem, code);
+
+  let review = null;
+  try {
+    review = await reviewCode(problem, code, result);
+  } catch (err) {
+    console.error("AI review failed:", err.message);
+  }
+
+  res.json({ ...result, review });
 });
 
 app.listen(PORT, () => {
