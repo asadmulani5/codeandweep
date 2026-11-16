@@ -42,7 +42,7 @@ app.post("/submit", async (req, res) => {
     const result = await judge(problem, code);
 
   let review = null;
-  try {
+  if (result.status !== "unavailable") try {
     review = await reviewCode(problem, code, result);
   } catch (err) {
     console.error("AI review failed:", err.message);
